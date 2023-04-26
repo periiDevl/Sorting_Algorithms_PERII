@@ -11,12 +11,14 @@ array = [0,]
 
 
 def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-                drawArray(arr)
+    arr_copy = arr.copy()
+
+    for i in range(len(arr_copy)):
+        for j in range(0, len(arr_copy)-i-1):
+            if arr_copy[j] > arr_copy[j+1]:
+                arr_copy[j], arr_copy[j+1] = arr_copy[j+1], arr_copy[j]
+                drawArray(arr_copy)
+
 def selection_sort(array):
     size = len(array)
     for s in range(size):
