@@ -2,6 +2,7 @@ import pygame
 import random
 import time
 import tkinter
+import customtkinter as ct
 import os
 import sys
 array = [0,]
@@ -115,8 +116,10 @@ for i in range(800 // int(cellsize)):
     array.append(random.randint(0, 800 // int(cellsize)))
 Surface = pygame.display.set_mode((800, 800))
 
-t = tkinter.Tk()
+t = ct.CTk()
 t.geometry("200x400")
+ct.set_appearance_mode("Dark") 
+ct.set_default_color_theme("blue") 
 
 drawArray(array)
 def tkbubblesort(): 
@@ -154,28 +157,28 @@ def update():
     os.execl(sys.executable, os.path.abspath(__file__), *sys.argv) 
 
 slider_var = tkinter.DoubleVar(value=cellsize)
-slider = tkinter.Scale(t, from_=1, to=60, orient=tkinter.HORIZONTAL, command=update_cellsize, variable=slider_var)
+slider = ct.CTkSlider(t, from_=1, to=60, orient=tkinter.HORIZONTAL, command=update_cellsize, variable=slider_var)
 slider.pack()
 
 quit_flag = False
 while not quit_flag:
-    b = tkinter.Button(t, text="Apply changes", command=update)
+    b = ct.CTkButton(t, text="Apply changes", command=update)
     b.pack(pady=25)
 
-    b = tkinter.Button(command=tkbubblesort,text = "Bubble")
+    b = ct.CTkButton(command=tkbubblesort,text = "Bubble")
     b.pack(pady=5)
-    b = tkinter.Button(command=tkinsertionsort,text = "Insertion")
+    b = ct.CTkButton(command=tkinsertionsort,text = "Insertion")
     b.pack(pady=5)
-    b = tkinter.Button(command=tkselectionsort,text = "Selection")
+    b = ct.CTkButton(command=tkselectionsort,text = "Selection")
     b.pack(pady=5)
-    b = tkinter.Button(command=tkmergesort,text = "Merge")
+    b = ct.CTkButton(command=tkmergesort,text = "Merge")
     b.pack(pady=5)
-    b = tkinter.Button(command=tkradixsort,text = "Radix")
+    b = ct.CTkButton(command=tkradixsort,text = "Radix")
     b.pack(pady=5)
     
-    b = tkinter.Button(command=tkreset,text = "Reset Array")
+    b = ct.CTkButton(command=tkreset,text = "Reset Array")
     b.pack(pady=25)
-    b = tkinter.Button(t, text="Quit", command=quit_programs)
+    b = ct.CTkButton(t, text="Quit", command=quit_programs)
     b.pack(pady=5)
 
     t.mainloop()
