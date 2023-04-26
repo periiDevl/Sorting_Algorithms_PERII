@@ -20,16 +20,17 @@ def bubble_sort(arr):
                 drawArray(arr_copy)
 
 def selection_sort(array):
-    size = len(array)
+    arr_copy = array.copy()
+    size = len(arr_copy)
     for s in range(size):
         min_idx = s
          
         for i in range(s + 1, size):
              
-            if array[i] < array[min_idx]:
+            if arr_copy[i] < arr_copy[min_idx]:
                 min_idx = i
-        (array[s], array[min_idx]) = (array[min_idx], array[s])
-        drawArray(array)
+        (arr_copy[s], arr_copy[min_idx]) = (arr_copy[min_idx], arr_copy[s])
+        drawArray(arr_copy)
 
 def insertion_sort(arr): 
    
@@ -82,28 +83,27 @@ def merge_sort(arr):
             drawArray(arr)
     
 def radix_sort(arr):
-    max_num = max(arr)
+    arr_copy = arr.copy()
+    max_num = max(arr_copy)
     exp = 1
     while max_num // exp > 0:
         count = [0] * 10
-        for i in range(len(arr)):
-            count[(arr[i] // exp) % 10] += 1
+        for i in range(len(arr_copy)):
+            count[(arr_copy[i] // exp) % 10] += 1
         for i in range(1, 10):
             count[i] += count[i - 1]
-        output = [0] * len(arr)
-        for i in range(len(arr) - 1, -1, -1):
-            index = (arr[i] // exp) % 10
-            output[count[index] - 1] = arr[i]
+        output = [0] * len(arr_copy)
+        for i in range(len(arr_copy) - 1, -1, -1):
+            index = (arr_copy[i] // exp) % 10
+            output[count[index] - 1] = arr_copy[i]
             count[index] -= 1
-        for i in range(len(arr)):
-            arr[i] = output[i]
-            drawArray(arr)
+        for i in range(len(arr_copy)):
+            arr_copy[i] = output[i]
+            drawArray(arr_copy)
         exp *= 10
         
-cellsize = 0
-with open('config.txt', 'r') as file:
-    line = file.readline()
-    cellsize = float(line.split(';:')[1].strip())
+cellsize = 9
+
 
 def drawArray(arr):
     Surface.fill((33,35,37))
@@ -137,6 +137,7 @@ def tkmergesort():
 def tkradixsort(): 
     radix_sort(array)
 def tkreset():
+    global array
     array = [0,]
     for i in range(800 // int(cellsize)):
         array.append(random.randint(0, 800 // int(cellsize)))
@@ -152,11 +153,6 @@ def quit_programs():
     t.quit()
     pygame.quit()
 
-def update():
-    lines = f";:{cellsize}\n"
-    with open('config.txt', 'w') as file:
-        file.writelines(lines)
-    os.execl(sys.executable, os.path.abspath(__file__), *sys.argv) 
 
 slider_var = tkinter.DoubleVar(value=cellsize)
 slider = ct.CTkSlider(t, from_=1, to=60, orient=tkinter.HORIZONTAL, command=update_cellsize, variable=slider_var)
@@ -164,8 +160,6 @@ slider.pack()
 
 quit_flag = False
 while not quit_flag:
-    b = ct.CTkButton(t, text="Apply changes", command=update)
-    b.pack(pady=25)
 
     b = ct.CTkButton(command=tkbubblesort,text = "Bubble")
     b.pack(pady=5)
@@ -184,7 +178,3 @@ while not quit_flag:
     b.pack(pady=5)
 
     t.mainloop()
-
-lines = f";:{cellsize}\n"
-with open('config.txt', 'w') as file:
-    file.writelines(lines)
