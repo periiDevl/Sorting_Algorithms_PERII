@@ -114,9 +114,9 @@ def drawArray(arr):
     pygame.display.update()
 
 pygame.init()
-for i in range(800 // int(cellsize)):
-    array.append(random.randint(0, 800 // int(cellsize)))
-Surface = pygame.display.set_mode((800, 800))
+for i in range(1000 // int(cellsize)):
+    array.append(random.randint(0, 1000 // int(cellsize)))
+Surface = pygame.display.set_mode((1000, 1000))
 
 t = ct.CTk()
 t.geometry("200x400")
@@ -139,8 +139,8 @@ def tkradixsort():
 def tkreset():
     global array
     array = [0,]
-    for i in range(800 // int(cellsize)):
-        array.append(random.randint(0, 800 // int(cellsize)))
+    for i in range(1000 // int(cellsize)):
+        array.append(random.randint(0, 1000 // int(cellsize)))
     drawArray(array)
 def update_cellsize(val):
     global cellsize
