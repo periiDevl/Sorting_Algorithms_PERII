@@ -1,6 +1,6 @@
 # Sorting algorithms
 
-lately I have been thinking of this problem, if you have a 1000000 different random numbers in a list you had to sort them from the least to the greatest in the smallest amount of processing time, how would you do that? well in today’s video we will create 5 different sorting algorithms to solve this issue.
+lately I have been thinking of this problem, if you have a 1000000 different random numbers in a list you had to sort them from the least to the greatest in the smallest amount of processing time, how would you do that? well in today’s readme we will create 5 different sorting algorithms to solve this issue.
 
 —-------------------------------------------------------------------------------------------------------------------
 The first algorithm we will try to use is the bubble sort algorithm, The bubble sort algorithm
